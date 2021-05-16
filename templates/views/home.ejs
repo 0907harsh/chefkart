@@ -10,7 +10,7 @@
 				<span class="uk-alert-danger" uk-alert><%= messages.error %></span>
 			<% } %>
 			<label for="Username">Lead Name :  </label><input name="name" value="" id="Username" type="text" placeholder="Name" minlength="5" maxlength="12" size="12" uk-tooltip="title: Must Be unique; pos: right;duration: 500;delay: 200" autocomplete="username"/><br/>
-			<label for="Password">Lead Contact :  </label><input name="contact" id="Password" type="number" placeholder="Contact" minlength="6" size="13" maxlength="14"  uk-tooltip="title: Must contain atleast 8 characters; pos: right;duration: 500;delay: 200" autocomplete="new-password"/><br/>
+			<label for="Password">Lead Contact :  </label><input name="contact" id="Password" type="tel" pattern="[0-9]{10}" placeholder="Contact" minlength="6" size="13" maxlength="14"  uk-tooltip="title: Must contain 10 digits; pos: right;duration: 500;delay: 200" autocomplete="new-password"/><br/>
 			<label for="EmailUser">Status        :  </label><select name="status">
 				<option value="New">New</option>
 				<option value="In-pipeline">In-Pipeline</option>
@@ -20,7 +20,6 @@
 		    <input name="userid" id="userid" value="<%= user.id %>" type="hidden" placeholder="AgeUser" maxlength="3" uk-tooltip="title: >18; pos: right;duration: 500;delay: 200" autocomplete="age"/><br/>
 			<button type="submit" id="SubmitDetails">Add Lead</button> 
 			</pre>
-			<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		</form>
 		<pre id="locationpara"> </pre>
 		<img style="vertical-align:middle;" src="" id="imageBox"/><pre style="vertical-align:middle; display:inline;" id="currentpara"></pre>

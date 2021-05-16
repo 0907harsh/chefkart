@@ -25,7 +25,7 @@ function leadController() {
             return res.render("leads", { leads });
         },
         async leadFilter(req, res) {
-            console.log(req.body.start_date, req.body.end_date);
+            // console.log(req.body.start_date, req.body.end_date);
             const startedDate = new Date(req.body.start_date + " 00:00:00");
             const endDate = new Date(req.body.end_date + " 00:00:00");
             const leads = await Lead.findAll({
@@ -44,7 +44,7 @@ function leadController() {
                 status: req.body.status,
                 contact: req.body.contact,
             };
-            console.log(data);
+            // console.log(data);
             Lead.create(data)
                 .then(function (newLead, created) {
                     if (!newLead) {
