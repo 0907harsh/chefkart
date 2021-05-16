@@ -16,11 +16,8 @@
 									<li class="uk-nav-divider"></li>
 									<li><a href="/Register"><span class="uk-margin-small-right" uk-icon="icon: question"></span> Register</a></li>
 									<a class="uk-button uk-button-primary  LoginPageButton" style="display:none; padding:5px 20px 5px 20px" href="#modal-overflow" uk-toggle> Login/SignUp</a>
-									<li class="cart"><a href='/cart'>
-										<button class="uk-button uk-button-primary">
-											<span id="cartCounter2" class="uk-icon uk-margin-small-right">
-												<%= session.cart ? session.cart.totalQty : '  ' %>
-											</span>Cart</button> 
+									<li class="cart"><a href='/lead'>
+										Leads
 									</a></li>			
 								</ul>
 							</div>
@@ -54,9 +51,9 @@
 						<% }else{ %>
 							
 							<li class="<% try { if (locals.active_register) { %><%= 'uk-active' %><% }} catch{}%>">
-								<a href="<% if(user.role == 'customer'){ %><%= '/customers/orders' %><% } %><% if(user.role == 'admin'){ %><%= '/admin/orders' %><% } %>">
+								<a href="/lead">
 								<span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span>
-								Orders</a>
+								Leads</a>
 							</li>
 							<% } %>
 					</ul>
@@ -70,9 +67,8 @@
 					<% } %>
 				</div>
 				<div class="uk-navbar-right">
-					<a class="cart-button" href="/cart" style="border:2px solid white;padding: 10px;margin-right:2rem;border-radius: 25%;">
-							<span id="cartCounter1"><%= session.cart ? session.cart.totalQty : '  ' %></span>
-							<img src="/media/img/cart.png">
+					<a class="cart-button" href="/profile" style="border:2px solid white;padding: 10px;margin-right:2rem;border-radius: 25%;">
+							Profile
 					</a>
 					<!-- <a href='/login'><button class="uk-button uk-button-primary LoginPageButton" style="display:none; padding:10px;margin: 10px">Login</button></a>
 					<a href='/profile'><button class="uk-button uk-button-primary MyProfilePageButton" style="display:none; padding:10px;margin: 10px"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user;ratio: .85"></span>Profile</button> </a> -->

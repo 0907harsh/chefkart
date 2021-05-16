@@ -1,7 +1,5 @@
 /** @format */
 
-const Menu = require("../../models/menu");
-
 function homeController() {
     var locals = {
         title: "Homepage",
@@ -10,8 +8,7 @@ function homeController() {
     };
     return {
         async index(req, res) {
-            var pizzas = await Menu.find();
-            res.render("home", { locals, pizzas });
+            res.render("home", { locals });
         },
     };
 }

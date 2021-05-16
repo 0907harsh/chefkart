@@ -5,38 +5,59 @@ require("dotenv").config({ path: "./config/.env" });
 const http = require("http");
 const express = require("express");
 const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
 const flash = require("express-flash");
-const MongoDbStore = require("connect-mongo")(session);
-require("./utils/mongoose");
-const mongoconnection = require("./utils/mongoose");
 var expressLayouts = require("express-ejs-layouts");
 const passport = require("passport");
+var bodyParser = require("body-parser");
 // require('./db/mongoose')
 
 const app = express();
 
-//Session Storage
-let mongoStore = new MongoDbStore({
-    mongooseConnection: mongoconnection,
-    collection: "sessions",
-});
+//For BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const sOpt = {
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database,
+};
+const sessionStore = new MySQLStore(sOpt);
 
 //Session config
 app.use(
     session({
+        store: sessionStore,
         secret: process.env.SECRET,
-        resave: false,
-        saveUninitialized: false,
-        store: mongoStore,
+        resave: true,
+        saveUninitialized: true,
         cookie: { maxAge: 1000 * 60 * 60 * 24 }, // security of session (level = low security) 24 hour
     })
 );
 
 //passport config
-const passortInit = require("./configPassport/passport");
-passortInit(passport);
+// const passortInit = require("./configPassport/passport");
+// passortInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Models
+var models = require("./models");
+
+//load passport strategies
+require("./configPassport/passport.js")(passport, models.user);
+
+//Sync Database
+models.sequelize
+    .sync()
+    .then(function () {
+        console.log("Nice! Database looks fine");
+    })
+    .catch(function (err) {
+        console.log(err, "Something went wrong with the Database Update!");
+    });
 
 app.use(flash());
 app.use(express.urlencoded({ extended: false }));

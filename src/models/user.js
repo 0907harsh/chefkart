@@ -1,19 +1,57 @@
 /** @format */
 
-const mongoose = require("mongoose");
+module.exports = (sequelize, Sequelize) => {
+    var User = sequelize.define("user", {
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER,
+        },
 
-const Schema = mongoose.Schema;
+        firstname: {
+            type: Sequelize.STRING,
+            notEmpty: true,
+        },
 
-const userSchema = new Schema(
-    {
-        name: { type: String, required: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true },
-        role: { type: String, default: "customer" },
-    },
-    {
-        timestamps: true,
-    }
-);
+        lastname: {
+            type: Sequelize.STRING,
+            notEmpty: true,
+        },
 
-module.exports = mongoose.model("User", userSchema);
+        username: {
+            type: Sequelize.TEXT,
+        },
+
+        about: {
+            type: Sequelize.TEXT,
+        },
+
+        email: {
+            type: Sequelize.STRING,
+            validate: {
+                isEmail: true,
+            },
+        },
+
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+
+        last_login: {
+            type: Sequelize.DATE,
+        },
+
+        age: {
+            type: Sequelize.INTEGER,
+            defaultValue: 0,
+        },
+
+        status: {
+            type: Sequelize.ENUM("active", "inactive"),
+            defaultValue: "active",
+        },
+    });
+
+    return User;
+};

@@ -1,0 +1,35 @@
+
+        <div>
+
+            <div class="uk-text-center">All Leads</div><br/>
+            <% if(messages.success) { %>
+				<pre id="lead-alert"><span class="uk-alert-success" uk-alert><%= messages.success %></span></pre>
+			<% } %>
+            <% if(leads.length) { %>
+                <div class="uk-text-center">
+                <form action="/lead/filter" method="POST"><label>StartDate : </label> <input name="start_date" type="date" /> &nbsp;&nbsp;&nbsp;<label>EndDate : </label> <input name="end_date" type="date" /> &nbsp;&nbsp;&nbsp;<button type="submit">Search</button></form>
+                </div>
+                <table class="uk-table uk-table-hover uk-table-divider">
+                    <thead>
+                        <tr>
+                            <th>Lead</th>
+                            <th>Contact</th>
+                            <th>Reward</th>
+                            <th>Status</th>
+                            <th>Created at</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadTableBody">
+                        
+                    </tbody>
+                </table> 
+            <% } else { %>
+                <ul class="uk-list uk-list-striped">
+                    <li>No Leads Till Now</li>
+                </ul>
+            <% } %>
+        </div>
+        <a href="#" style="height:1.5rem;color: black;text-align: center;background-color: skyblue; width: 2rem;bLead-radius: 50%;z-index: 1;position: fixed;margin-top: calc(100vh - 50px);margin-left: calc(100vw - 5rem);padding-top: 1rem;" uk-totop uk-scroll></a>
+    
+        <script src="/js/user.js"></script>
