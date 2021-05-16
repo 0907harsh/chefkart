@@ -8,12 +8,13 @@
 			<% } %>
             <input name="userId" value="<%= user.id %>" id="userId" type="hidden" /><br/>
 			<label for="Username">Username :  </label><input name="username" value="<%= user.username %>" id="Username" type="text/plain" placeholder="username" minlength="5" maxlength="12" size="12" uk-tooltip="title: Must Be unique; pos: right;duration: 500;delay: 200" autocomplete="username"/><br/>
-			<label for="firstname">First Name :  </label><input name="firstname" value="<%= user.firstname %>" id="firstname" type="text/plain" placeholder="username" minlength="5" maxlength="12" size="12" uk-tooltip="title: Must Be unique; pos: right;duration: 500;delay: 200" autocomplete="username"/><br/>
-            <label for="lastname">Last Name :  </label><input name="lastname" value="<%= user.lastname %>" id="lastname" type="text/plain" placeholder="username" minlength="5" maxlength="12" size="12" uk-tooltip="title: Must Be unique; pos: right;duration: 500;delay: 200" autocomplete="username"/><br/>
+			<label for="firstname">First Name :  </label><input name="firstname" value="<%= user.firstname %>" id="firstname" type="text/plain" placeholder="firstname" minlength="5" maxlength="12" size="12" uk-tooltip="title: First Name Please; pos: right;duration: 500;delay: 200" autocomplete="username"/><br/>
+            <label for="lastname">Last Name :  </label><input name="lastname" value="<%= user.lastname %>" id="lastname" type="text/plain" placeholder="lastname" minlength="5" maxlength="12" size="12" uk-tooltip="title:  Last Name Please; pos: right;duration: 500;delay: 200" autocomplete="username"/><br/>
             <label for="Password">Password :  </label><input name="password" value="123456789" id="Password" type="password" placeholder="password" minlength="6" size="13" maxlength="14"  uk-tooltip="title: Must contain atleast 8 characters; pos: right;duration: 500;delay: 200" autocomplete="new-password"/><br/>
-			<label for="EmailUser">Email        :  </label><input name="email" value="<%= user.email %>" id="EmailUser" type="email" placeholder="Email" size="25" uk-tooltip="title: Email-Verification will be done; pos: right;duration: 500;delay: 200" autocomplete="email"/><br/>
+			<label for="EmailUser">Email        :  </label><input name="email" value="<%= user.email %>" id="EmailUser" type="email" placeholder="Email" size="25" uk-tooltip="title: Use a valid Email; pos: right;duration: 500;delay: 200" autocomplete="email"/><br/>
 			<label for="AgeUser">Age          :  </label><input name="age" id="AgeUser" value="<%= user.age %>" type="number" placeholder="AgeUser" maxlength="3" uk-tooltip="title: >18; pos: right;duration: 500;delay: 200" autocomplete="age"/><br/>
-			<button type="submit" id="SubmitDetails">Update</button> 
+			<label for="Rewards">Rewards          :  </label><input name="rewards" id="rewards" value="<%= user.rewards %>" type="number" placeholder="Rewards" maxlength="3" uk-tooltip="title: Totals Rewards; pos: right;duration: 500;delay: 200" autocomplete="age"/><br/>
+            <button type="submit" id="SubmitDetails">Update</button> 
 			</pre>
 			<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		</form>

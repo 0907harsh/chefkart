@@ -2,6 +2,7 @@
 
 var models = require("../../models");
 const User = models.user;
+const Lead = models.lead;
 
 function userController() {
     var locals = {
@@ -11,7 +12,31 @@ function userController() {
     };
     return {
         async index(req, res) {
-            res.render("profile", { locals });
+            const leads = await Lead.findAll({
+                where: {
+                    userid: req.user.id,
+                },
+            });
+            var rewards = 0;
+            leads.map((lead) => {
+                rewards = rewards + lead.reward;
+            });
+            User.update(
+                {
+                    rewards: rewards,
+                },
+                { where: { id: req.user.id } }
+            )
+                .then((err, data) => {
+                    if (err) {
+                        req.flash("error", "Something Went Wrong");
+                        return res.render("profile");
+                    }
+                    res.render("profile");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         },
         updateProfile(req, res) {
             User.update(

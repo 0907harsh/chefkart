@@ -22,8 +22,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.TEXT,
         },
 
-        about: {
-            type: Sequelize.TEXT,
+        rewards: {
+            type: Sequelize.INTEGER,
+            defaultValue: 0,
         },
 
         email: {

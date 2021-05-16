@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
 
         reward: {
             type: Sequelize.INTEGER,
-            defaultValue: 0,
+            defaultValue: 10,
         },
 
         status: {
